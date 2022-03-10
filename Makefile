@@ -22,11 +22,11 @@
 #software.
 
 
-CC	= icc
-CFLAGS	= -O2 -qopenmp -Wall -static-intel
+CC	= clang
+CFLAGS	= -O2 -fopenmp -Wall
 
-BLIS_LIBS = -L$(BLISLIB) -lblis
-MKL_LIBS = -L$(MKLROOT)/lib/intel64 -Wl,-Bstatic -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Wl,--end-group -Wl,-Bdynamic
+BLIS_LIBS = -lblis -ldl
+MKL_LIBS = -L$(MKLROOT)/lib/intel64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Wl,--end-group -Wl,-Bdynamic -ldl
 
 all : mkl blis
 
